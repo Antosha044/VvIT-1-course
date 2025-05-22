@@ -1,0 +1,16 @@
+FROM python:3.9-slim
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    libgl1-mesa-glx \
+    libsm6 \
+    libxext6 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install face_recognition
+
+WORKDIR /app
+COPY . . 
+
+CMD ["python", "main.py"]
